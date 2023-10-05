@@ -1,0 +1,135 @@
+.header {
+	padding-top: 16px;
+	padding-bottom: 16px;
+	border-bottom: 1px solid #EEEFF2;
+
+	&__container {
+		display: grid;
+		gap: 16px;
+		justify-content: space-between;
+		align-items: center;
+		grid-template-areas: 
+		'logo control'
+		'search search';
+
+		@media (min-width: 820px) {
+			grid-template-areas: 'logo search control';
+			grid-template-columns: 94px 1fr auto;
+			align-items: center;
+		}
+	}
+
+	&__logo {
+		grid-area: logo;
+		width: 94px;
+	}
+
+	&__search {
+		position: relative;
+		grid-area: search;
+		width: 100%;
+		height: 38px;
+
+		@media (min-width: 820px) {
+			max-width: 408px;
+			justify-self: center;
+		}
+
+		@media (min-width: 1120px) {
+			max-width: 514px;
+		}
+	}
+
+	&__input {
+		width: 100%;
+		height: 100%;
+		background-color: #EEEFF2;
+		border: none;
+		border-radius: 32px;
+		padding-left: 24px;
+		padding-right: 40px;
+
+
+
+		&::placeholder {
+			color: #969EAE;
+		}
+
+		&:focus-visible, &:hover {
+			outline: 1px solid #DFE3EB;
+		}
+	}
+
+	&__btn {
+		position: absolute;
+		top: 50%;
+		right: 24px;
+		transform: translateY(-50%);
+		display: block;
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		outline-offset: 4px;
+		outline: 1px solid transparent;
+		transition: color .3s ease-in-out;
+
+		&:hover {
+			color: #9200B7;
+		}
+
+		&:active {
+			color: #780096;
+		}
+
+		&:focus-visible {
+			color: #9200B7;
+			outline-color: #9200B7;
+		}
+	}
+
+	&__control {
+		grid-area: control;
+		justify-self: end;
+		display: flex;
+		gap: 16px;
+	}
+
+	&__link {
+		display: flex;
+		flex-direction: row-reverse;
+		align-items: center;
+		gap: 4px;
+		border-radius: 4px;
+		outline-offset: 4px;
+		outline: 1px solid transparent;
+		transition: color .3s ease-in-out;
+
+		&:hover {
+			color: #9200B7;
+		}
+
+		&:active {
+			color: #780096;
+		}
+
+		&:focus-visible {
+			color: #9200B7;
+			outline-color: #9200B7;
+		}
+
+		@media (min-width: 580px) {
+			flex-direction: row;
+		}
+	}
+
+	&__link-text {
+		display: none;
+
+		@media (min-width: 580px) {
+			display: block;
+		}
+	}
+
+	&__count {
+	}
+}
