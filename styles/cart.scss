@@ -139,9 +139,19 @@
     line-height: 14px;
     border: 1px solid transparent;
     outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color .3s ease-in-out;
 
     &:focus-visible {
       border-color: #780096;
+      outline-offset: 1px;
+      border-radius: 50%;
+    }
+
+    &:hover {
+      color: #780096;
     }
   }
 
@@ -198,10 +208,6 @@
   &__place-btn {
     width: 100%;
     padding: 12px 24px;
-    // border-radius: 32px;
-    // border: 1px solid transparent;
-    // background-color: #780096;
-    // color: #fff;
   }
 
   &__form {

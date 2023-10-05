@@ -53,6 +53,10 @@
     &::placeholder {
       color: #969eae;
     }
+
+    &:focus-visible {
+      outline-color: #780096;
+    }
   }
 
   &__textarea {
@@ -65,6 +69,10 @@
 
     &::placeholder {
       color: #969eae;
+    }
+
+    &:focus-visible {
+      outline-color: #780096;
     }
 
     @media (min-width: 580px) {

@@ -14,9 +14,29 @@
   &__item {
     display: flex;
     gap: 6px;
+    transition: color .3s ease-in-out;
   }
 
   &__item:last-child &__separator {
     display: none;
+  }
+
+  &__link {
+    &:hover {
+      color: #780096;
+    }
+
+    &:focus-visible {
+      color: #9200B7;
+			outline: 1px solid #9200B7;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    &:last-child {
+      &:hover {
+        color: #969eae;
+      }
+    }
   }
 }
