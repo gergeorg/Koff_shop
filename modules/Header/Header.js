@@ -1,5 +1,5 @@
 import { addContainer } from '../addContainer';
-import logoImg from '/logo.svg'
+import { getLogo } from '../getLogo';
 
 export class Header {
 	static instance = null;
@@ -12,6 +12,7 @@ export class Header {
 			this.containerElem = addContainer(this.element, 'header__container');
 			this.isMounted = false;
 		}
+		
 		return Header.instance;
 	}
 
@@ -20,7 +21,7 @@ export class Header {
 			return;
 		}
 
-		const logo = this.getLogo()
+		const logo = getLogo('header__link-logo', 'header__logo')
 		const searchForm = this.getSearchForm()
 		const navigation = this.getNavigation()
 
@@ -33,20 +34,6 @@ export class Header {
 	unmount () {
 		this.element.remove()
 		this.isMounted = false
-	}
-
-	getLogo() {
-		const logo = document.createElement('a')
-		logo.classList.add('header__link-logo')
-		logo.href = '/'
-
-		const imgLogo = new Image()
-		imgLogo.classList.add('header__logo')
-		imgLogo.src = logoImg
-		imgLogo.alt = 'Логотип интернет-магазина мебели Koff'
-		logo.append(imgLogo)
-
-		return logo
 	}
 
 	getSearchForm() {
