@@ -5,7 +5,7 @@ export class Main {
 		if (!Main.instance) {
 			Main.instance = this;
 			this.element = document.createElement('main');
-				this.isMounted = false;
+			this.isMounted = false;
 		}
 
 		return Main.instance;

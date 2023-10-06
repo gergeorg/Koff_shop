@@ -1,9 +1,12 @@
 import 'normalize.css'
 import './style.scss'
+
 import Navigo from 'navigo';
+
 import { Header } from './modules/Header/Header';
 import { Main } from './modules/Main/Main';
 import { Footer } from './modules/Footer/Footer';
+import { Order } from './modules/Order/Order';
 
 const productSlider = () => {
   Promise.all([
@@ -41,6 +44,7 @@ const init = () => {
   productSlider()
 
   const router = new Navigo('/', { linksSelector: 'a[href^="/"]' })
+
   router
   .on('/', () => {
     console.log('на главной');
@@ -61,11 +65,13 @@ const init = () => {
     console.log('cart');
   })
   .on('/order', () => {
+    new Order().mount(new Main().element);
     console.log('order');
   })
   .notFound(() => {
     document.body.innerHTML = `<h2>Страница не найдена</h2>`
   })
+
   router.resolve()
 }
 
