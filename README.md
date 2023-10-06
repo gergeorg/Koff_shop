@@ -7,6 +7,7 @@ https://koff-shop.vercel.app/
 ### Used:
 
 - [Vite](https://vitejs.dev/)
+- Routing: [Navigo](https://github.com/krasimir/navigo/)
 - Style: scss
 
 
