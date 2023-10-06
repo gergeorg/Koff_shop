@@ -11,10 +11,23 @@
 	}
 
 	&__link {
+		outline: 1px solid transparent;
+		outline-offset: 3px;
+		border-radius: 4px;
+		transition: color .3s ease-in-out;
+
+		&:hover {
+			color: #780096;
+		}
+
+		&:focus-visible {
+			outline-color: #780096;
+		}
 		
 		&_img {
 			display: block;
 			margin-bottom: 12px;
+			border-radius: 16px;
 
 			@media (min-width: 580px) {
 				margin-bottom: 16px;
@@ -80,5 +93,16 @@
 		position: absolute;
 		top: 12px;
 		right: 12px;
+		color: #fff;
+
+		&:hover svg {
+			color: #780096;
+		}
+
+		&:focus-visible {
+			outline: 1px solid #780096;
+			outline-offset: 1px;
+			border-radius: 50%;
+		}
 	}
 }
