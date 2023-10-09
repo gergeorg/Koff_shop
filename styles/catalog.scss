@@ -41,6 +41,7 @@
 		color: #969EAE;
 		border: 1px solid transparent;
 		transition: color .3s ease-in-out, border .3s ease-in-out, background-color .3s ease-in-out	;
+		white-space: nowrap;
 
 		&:hover, &:focus-visible {
 			outline: none;

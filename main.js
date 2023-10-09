@@ -9,6 +9,7 @@ import { Footer } from './modules/Footer/Footer';
 import { Order } from './modules/Order/Order';
 import { ProductList } from './modules/ProductList/ProductList';
 import { ApiService } from './services/ApiService';
+import { Catalog } from './modules/Catalog/Catalog';
 
 const productSlider = () => {
   Promise.all([
@@ -40,40 +41,48 @@ const productSlider = () => {
 
 const init = () => {
   const api = new ApiService()
+  const router = new Navigo('/', { linksSelector: 'a[href^="/"]' })
   new Header().mount()
   new Main().mount()
   new Footer().mount()
 
+  api.getProdictCategories().then(data => {
+    new Catalog().mount(new Main().element, data)
+    router.updatePageLinks()
+  })
   productSlider()
-
-  const router = new Navigo('/', { linksSelector: 'a[href^="/"]' })
 
   router
   .on('/', async () => {
     const product = await api.getProducts()
-
     new ProductList().mount(new Main().element, product)
+    router.updatePageLinks()
   }, {
     leave(done) {
+      new ProductList().unmount()
       done()
     },
     already() {
 
     }
   })
-  .on('/category', () => {
-    console.log('category');
-    new ProductList().mount(new Main().element, [1,2,3,4], 'category')
+  .on('/category', async ({params: {slug}}) => {
+    const product = await api.getProducts()
+    new ProductList().mount(new Main().element, product, slug)
+    router.updatePageLinks()
   }, {
     leave(done) {
+      new ProductList().unmount()
       done()
     }
   })
-  .on('/favorite', () => {
-    console.log('favorite');
-    new ProductList().mount(new Main().element, [1], 'Избранное')
+  .on('/favorite', async () => {
+    const product = await api.getProducts()
+    new ProductList().mount(new Main().element, product, 'Избранное')
+    router.updatePageLinks()
   },  {
     leave(done) {
+      new ProductList().unmount()
       done()
     }
   })
@@ -96,10 +105,10 @@ const init = () => {
     //после ухода на главную - утрать блок с ошибкой
 
     new Main().element.innerHTML = `
-    <div class="container">
-      <h2>Страница не найдена</h2>
-      <p>Через несколько секунд вы будете перенаправлены 
-        <a href="/" class="">на главную страницу</a>
+    <div class="container error">
+      <h2 class="error__title">Страница не найдена &#128577;</h2>
+      <p class="error__text">Через несколько секунд вы будете перенаправлены 
+        <a href="/" class="error__link">на главную страницу</a>
       </p>
     </div>
     `

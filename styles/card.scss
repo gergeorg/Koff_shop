@@ -1,6 +1,9 @@
 
 .card {
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 	
 	@media (min-width: 820px) {
 		
@@ -39,14 +42,24 @@
 		width: 100%;
 		object-fit: cover;
 		border-radius: 16px;
+		aspect-ratio: 7/6;
+
+		@media (min-width: 580px) {
+			aspect-ratio: 23/20;
+		}
+
+		@media (min-width: 820px) {
+			aspect-ratio: 151/125;
+		}
 	}
 
 	&__info {
+		flex-grow: 1;
+		
 		@media (min-width: 580px) {
 			display: flex;
 			gap: 5px;
 			margin-bottom: 20px;
-			
 		}
 	}
 
@@ -76,6 +89,7 @@
 		border-radius: 32px;
 		border: 1px solid #780096;
 		color: #780096;
+		transition: background-color .3s ease-in-out, color .3s ease-in-out;
 
 		&:hover {
 			outline: none;
@@ -93,6 +107,8 @@
 		position: absolute;
 		top: 12px;
 		right: 12px;
+		width: 16px;
+		height: 16px;
 		color: #fff;
 
 		&:hover svg {
