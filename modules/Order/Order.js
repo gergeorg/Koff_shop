@@ -15,14 +15,14 @@ export class Order {
 		return Order.instance;
 	}
 
-	mount(element) {
+	mount(parent) {
 		if (this.isMounted) {
 			return;
 		}
 
 		this.containerElem.insertAdjacentHTML('beforeend', this.getHTML())
 
-		element.append(this.element);
+		parent.append(this.element);
 		this.isMounted = true;
 	}
 

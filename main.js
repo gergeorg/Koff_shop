@@ -7,6 +7,7 @@ import { Header } from './modules/Header/Header';
 import { Main } from './modules/Main/Main';
 import { Footer } from './modules/Footer/Footer';
 import { Order } from './modules/Order/Order';
+import { ProductList } from './modules/ProductList/ProductList';
 
 const productSlider = () => {
   Promise.all([
@@ -47,13 +48,31 @@ const init = () => {
 
   router
   .on('/', () => {
+    new ProductList().mount(new Main().element, [1,2,3])
     console.log('на главной');
+  }, {
+    leave(done) {
+      done()
+    },
+    already() {
+
+    }
   })
   .on('/category', () => {
     console.log('category');
+    new ProductList().mount(new Main().element, [1,2,3,4], 'category')
+  }, {
+    leave(done) {
+      done()
+    }
   })
   .on('/favorite', () => {
     console.log('favorite');
+    new ProductList().mount(new Main().element, [1], 'Избранное')
+  },  {
+    leave(done) {
+      done()
+    }
   })
   .on('/search', () => {
     console.log('search');
@@ -69,7 +88,22 @@ const init = () => {
     console.log('order');
   })
   .notFound(() => {
-    document.body.innerHTML = `<h2>Страница не найдена</h2>`
+    // todo
+    //стилизовать этот блок
+    //после ухода на главную - утрать блок с ошибкой
+
+    new Main().element.innerHTML = `
+    <div class="container">
+      <h2>Страница не найдена</h2>
+      <p>Через несколько секунд вы будете перенаправлены 
+        <a href="/" class="">на главную страницу</a>
+      </p>
+    </div>
+    `
+
+    setTimeout(() => {
+      router.navigate('/')
+    }, 5000)
   })
 
   router.resolve()
