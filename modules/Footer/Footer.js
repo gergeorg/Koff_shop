@@ -1,5 +1,5 @@
+import { getLogo } from '../../features/Logo/Logo';
 import { addContainer } from '../addContainer';
-import { getLogo } from '../getLogo';
 
 export class Footer {
 	static instance = null;

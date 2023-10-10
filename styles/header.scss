@@ -103,18 +103,37 @@
 		outline-offset: 4px;
 		outline: 1px solid transparent;
 		transition: color .3s ease-in-out;
+		
+
+		svg {
+			stroke: #1C1C1C;
+			fill: transparent;
+			transition: stroke .3s ease-in-out;
+		}
 
 		&:hover {
 			color: #9200B7;
+
+			svg {
+				stroke: #9200B7;
+			}
 		}
 
 		&:active {
 			color: #780096;
+
+			svg {
+				stroke: #780096;
+			}
 		}
 
 		&:focus-visible {
 			color: #9200B7;
 			outline-color: #9200B7;
+
+			svg {
+				stroke: #9200B7;
+			}
 		}
 
 		@media (min-width: 580px) {

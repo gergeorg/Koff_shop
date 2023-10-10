@@ -101,6 +101,12 @@
 			outline: none;
 			border: 1px solid #C0F;
 		}
+
+		&:active {
+			color: #C0F;
+			border: 1px solid #C0F;
+			background-color: transparent;
+		}
 	}
 
 	&__favorite {
@@ -111,13 +117,23 @@
 		height: 16px;
 		color: #fff;
 
-		&:hover svg {
-			color: #780096;
+		svg {
+			stroke: #1C1C1C;
+
+			&:hover, &_active {
+				color: #780096;
+				stroke: #780096;
+
+			&:active {
+				color: #C0F;
+				stroke: #1C1C1C;
+			}
+			}
 		}
 
 		&:focus-visible {
 			outline: 1px solid #780096;
-			outline-offset: 1px;
+			outline-offset: 2px;
 			border-radius: 50%;
 		}
 	}
