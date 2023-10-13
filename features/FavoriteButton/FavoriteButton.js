@@ -1,9 +1,11 @@
+import { FavoriteService } from '../../services/StorageService';
 import { favoriteSvg } from '../favoriteSvg/favoriteSvg';
 
 
 export class FavoriteButton {
 	constructor(className) {
 		this.className = className
+		this.favoriteService = new FavoriteService()
 	}
 
 	create(id) {
@@ -16,8 +18,18 @@ export class FavoriteButton {
 			button.append(svg)
 		})
 
+		if (this.favoriteService.check(id)) {
+			button.classList.add(`${this.className}_active`)
+		}
+
 		button.addEventListener('click', () => {
-			console.log('Добавлено в избранное');
+			if (this.favoriteService.check(id)) {
+				this.favoriteService.remove(id)
+				button.classList.remove(`${this.className}_active`)
+			} else {
+				this.favoriteService.add(id)
+				button.classList.add(`${this.className}_active`)
+			}
 		})
 
 		return button
