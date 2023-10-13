@@ -11,6 +11,7 @@ import { ProductList } from './modules/ProductList/ProductList';
 import { ApiService } from './services/ApiService';
 import { Catalog } from './modules/Catalog/Catalog';
 import { FavoriteService } from './services/StorageService';
+import { Pagination } from './features/Pagination/Pagination';
 
 const productSlider = () => {
   Promise.all([
@@ -67,9 +68,10 @@ const init = () => {
       match.route.handler(match)
     }
   })
-  .on('/category', async ({params: {slug}}) => {
-    const { data } = await api.getProducts({ category: slug })
+  .on('/category', async ({params: {slug, page}}) => {
+    const { data, pagination } = await api.getProducts({ category: slug, page: page || 1 })
     new ProductList().mount(new Main().element, data, slug)
+    new Pagination().mount(new ProductList().containerElement).update(pagination)
     router.updatePageLinks()
   }, {
     leave(done) {

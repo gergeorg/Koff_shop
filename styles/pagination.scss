@@ -43,4 +43,10 @@
 			outline-color: #780096;
 		}
 	}
+
+	&__info {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+	}
 }
