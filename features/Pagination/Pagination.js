@@ -12,7 +12,13 @@ export class Pagination {
 	update({ currentPage, limit, totalPages, totalProducts }) {
 		const width = currentPage * limit
 		this.paginationBar.style.setProperty('--width', `calc(${width < totalProducts ? width : totalProducts} / ${totalProducts} * 100%)`)
-		this.paginationCurrent.textContent = width < totalProducts ? width : width  - limit + (totalProducts % limit)
+		this.paginationCurrent.textContent = 
+			totalProducts === limit 
+				? totalProducts 
+				: width < totalProducts 
+				? width 
+				: width  - limit + (totalProducts % limit)
+
 		this.paginationTotal.textContent = totalProducts
 
 		const urlLeft = new URL(window.location.href)
