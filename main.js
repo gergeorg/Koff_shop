@@ -114,8 +114,24 @@ const init = () => {
     console.log('search');
   })
 
-  .on('/product/:id', ({}) => {
-    console.log('product');
+  .on('/product/:id', async (obj) => {
+    new Catalog().mount(new Main().element)
+    const data = await api.getProductById(obj.data.id)
+    console.log('data: ', data);
+    new BreadCrumbs().mount(new Main().element, [
+      {
+        text: data.category, 
+        href: `/category?slug=${data.category}`
+      }, 
+      {
+        
+      }])
+    new ProductCard().mount(new Main().element, data)
+  }, {
+    leave(done) {
+      new Catalog().unmount()
+      done()
+    }
   })
 
   .on('/cart', () => {
